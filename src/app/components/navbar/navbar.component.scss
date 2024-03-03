@@ -1,0 +1,15 @@
+.signOut-btn{
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.signOut-btn :hover{
+    cursor: pointer;
+    color: red;
+    border-radius: 5px;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: var(--main-color);
+}
+.dropdown-menu {
+    left: -100px;
+}

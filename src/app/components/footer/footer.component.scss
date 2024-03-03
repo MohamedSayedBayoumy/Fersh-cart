@@ -1,0 +1,32 @@
+.footer-icons{
+    min-height: 80px;
+    // background-color: teal;
+    border-top: solid 1px #B4B4B8;
+    border-bottom: solid 1px #B4B4B8;
+}
+.payment-container{
+    width: 60px;
+}
+.get-deliveriies{
+    width: 35%;
+}
+.app-store-container{
+    width: 100px;
+}
+.google-store-container{
+    width: 90px;
+    margin-top: 5px;
+}
+
+@media screen and (max-width:767px) {
+    .get-deliveriies p{
+        width: 400px;
+    }
+    // .app-store-container{
+    //     width: 50px;
+    // }
+    .google-store-container{
+        // width: 40px;
+        margin-top: 3px;
+    }
+}

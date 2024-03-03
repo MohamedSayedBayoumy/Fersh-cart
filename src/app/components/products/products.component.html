@@ -1,0 +1,44 @@
+<app-loader *ngIf="isloading"></app-loader>
+<div class="row gy-5 mb-5 mt-1">
+  <div *ngFor="let product of productList; let i = index" class="col-md-2">
+    <div class="product p-2 cursor-pointer">
+      <div [routerLink]="['/productDetails', product._id]">
+        <img [src]="product.imageCover" class="w-100" alt="" />
+        <span class="text-main fw-bolder">{{ product.category.name }}</span>
+        <div class="d-flex justify-content-between">
+          <h3 class="h6">{{ product.title | splicString : 2 }}</h3>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+          <span>{{ product.price | currency : "EGP " }}</span>
+          <span>
+            <i class="fa fa-star rating-color"></i>
+            {{ product.ratingsAverage }}
+          </span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button
+          (click)="addItemToCart(product._id)"
+          class="btn bg-main text-white w-75"
+        >
+          Add to Cart
+        </button>
+        <span *ngIf="!myWishList.includes(product._id)"
+          ><i
+            class="fa-regular fa-heart fs-4"
+            (click)="addProductToWishList(product._id)"
+          ></i
+        ></span>
+        <span *ngIf="myWishList.includes(product._id)"
+          ><i
+            class="fa fa-heart heart-color fs-4 fa-beat"
+            (click)="removeProductFromWishList(product._id)"
+          ></i
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 

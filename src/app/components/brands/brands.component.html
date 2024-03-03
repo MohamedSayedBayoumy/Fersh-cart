@@ -1,0 +1,9 @@
+<app-loader *ngIf="isloading"></app-loader>
+<div class="row gy-5 mb-5 mt-1">
+  <div *ngFor="let brand of brands" class="col-md-3">
+    <div class="product p-2">
+      <img [src]="brand.image" class="w-100" />
+      <p class="text-main fw-bolder text-center">{{ brand.name }}</p>
+    </div>
+  </div>
+</div>

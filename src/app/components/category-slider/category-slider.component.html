@@ -1,0 +1,9 @@
+<h3 class="mt-3">Best Seller</h3>
+<owl-carousel-o [options]="silderOptions">
+  <ng-container *ngFor="let category of categories">
+    <ng-template carouselSlide [id]="category._id">
+      <img height="200" [src]="category.image" />
+      <h6>{{ category.name }}</h6>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

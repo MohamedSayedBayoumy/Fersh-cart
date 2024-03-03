@@ -1,0 +1,36 @@
+
+
+<div class="my-4">
+    <h3 class="h4">Please fill the following information</h3>
+    <form [formGroup]='shippingForm' (ngSubmit)="confirmPayment(shippingForm)">
+        <div class="mb-3">
+            <label for="">Details :</label>
+            <input formControlName="details" type="text" class="form-control">
+
+            <div *ngIf="shippingForm.get('details')?.touched && shippingForm.get('details')?.errors"
+                class="mt-2 alert alert-danger p-2 ">
+                <p *ngIf="shippingForm.get('details')?.errors?.['required']" class="m-0">details is required</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="">Phone :</label>
+            <input formControlName="phone" type="tel" class="form-control">
+
+            <div *ngIf="shippingForm.get('phone')?.touched && shippingForm.get('phone')?.errors" class="mt-2 alert alert-danger p-2">
+                <p *ngIf="shippingForm.get('phone')?.errors?.['required']" class="m-0">phone is required</p>
+                <p *ngIf="shippingForm.get('phone')?.errors?.['pattern']" class="m-0">Enter a Valid Phone number</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="">City :</label>
+            <input formControlName="city" type="text" class="form-control">
+
+            <div *ngIf="shippingForm.get('city')?.touched && shippingForm.get('city')?.errors"
+                class="mt-2 alert alert-danger p-2 ">
+                <p *ngIf="shippingForm.get('city')?.errors?.['required']" class="m-0">city is required</p>
+            </div>
+        </div>
+
+        <button [disabled]="shippingForm.invalid" class="btn bg-main text-white d-block ms-auto">Confirm Buying</button>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+<app-loader *ngIf="isloading"></app-loader>
+<section class="orders">
+    <div *ngIf="allOrders.length ==0" class="alert alert-danger p-0 my-4">
+        <p class="p-2 text-center">No orders yet, go make a one</p>
+    </div>
+
+    <div  *ngIf="allOrders.length > 0">
+        <h2 class="text-center mt-4">All Your orders</h2>
+        <div class="d-flex flex-column-reverse">
+            <div *ngFor="let orderItem of allOrders" class="order-card bg-secondary rounded-2 mt-3 mb-4 p-2">
+                <div class="bg-light p-2 mb-2 rounded-2">
+                    <h3 class="h6 text-dark"><span class="fw-bolder text-main">Order Id</span>: {{orderItem.id}}</h3>
+                </div>
+
+                <div class="bg-light p-3 rounded-2 mb-2">
+                    <h3 class="h4">Order Items</h3>
+                    <hr>
+                    <div *ngFor="let item of orderItem.cartItems; let i = index"
+                        class="row mb-2 bg-white rounded-2 p-1 shadow-sm d-flex align-items-center">
+                        <div class="col-md-1">
+                            <div>
+                                <img [src]="item.product.imageCover" class="w-100 rounded-2" alt="dsadsadsa">
+                            </div>
+                        </div>
+                        <div class="col-md-11 d-md-flex justify-content-between">
+                            <div>
+                                <h3>{{item.product.title|splicString:8}}</h3>
+                                <p><span class="fw-bolder">number of item</span>: {{item.count}}</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <p>{{item.price|currency:'EGP '}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-light p-3 rounded-2 mb-2 d-md-flex justify-content-between">
+                    <p><span class="fw-bolder text-main">Address:</span>
+                        {{orderItem.shippingAddress.details}},{{orderItem.shippingAddress.city}}</p>
+                    <p><span class="fw-bolder text-main">Phone:</span> {{orderItem.shippingAddress.phone}}</p>
+
+                    <p *ngIf="orderItem.isPaid"><span class="fw-bolder text-main">Order payment Status:</span> paid</p>
+                    <p *ngIf="!orderItem.isPaid"><span class="fw-bolder text-main">Order payment Status:</span> not paid
+                    </p>
+
+                    <p><span class="fw-bolder text-main">Payment Method:</span> {{orderItem.paymentMethodType}}</p>
+
+                    <p *ngIf="!orderItem.isDelivered"><span class="fw-bolder text-main">Is Deleverd:</span> in progress
+                    </p>
+                    <p *ngIf="orderItem.isDelivered"><span class="fw-bolder text-main">Is Deleverd:</span> done</p>
+
+                </div>
+                <div class="bg-main text-white d-block ms-auto price-container p-2 rounded-2">
+                    <span><span class="fw-bolder">Total Price</span>: {{orderItem.totalOrderPrice|currency:'EGP'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+<app-loader *ngIf="isloading"></app-loader>
+<app-main-slider></app-main-slider>
+<div class="w-75 mx-auto my-3">
+  <input
+    placeholder="Search"
+    [(ngModel)]="term"
+    type="text"
+    (keyup)="search()"
+    class="form-control"
+  />
+</div>
+<app-category-slider></app-category-slider>
+
+<div class="row gy-5 mb-5 mt-1">
+  <div
+    *ngFor="let product of productList | searchByTitle : term; let i = index"
+    class="col-md-2"
+  >
+    <div class="product p-2 cursor-pointer">
+      <div [routerLink]="['/productDetails', product._id]">
+        <img [src]="product.imageCover" class="w-100" alt="" />
+        <span class="text-main fw-bolder">{{ product.category.name }}</span>
+        <div class="d-flex justify-content-between">
+          <h3 class="h6">{{ product.title | splicString : 2 }}</h3>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+          <span>{{ product.price | currency }}</span>
+          <span>
+            <i class="fa fa-star rating-color"></i>
+            {{ product.ratingsAverage }}
+          </span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button
+          (click)="addToCart(product._id)"
+          class="btn bg-main text-white w-75"
+        >
+          Add to Cart
+        </button>
+        <span *ngIf="!myWishList.includes(product._id)"
+          ><i
+            class="fa-regular fa-heart fs-4"
+            (click)="addToWishList(product._id)"
+          ></i
+        ></span>
+        <span *ngIf="myWishList.includes(product._id)"
+          ><i
+            class="fa fa-heart heart-color fs-4 fa-beat"
+            (click)="removeWishList(product._id)"
+          ></i
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>
